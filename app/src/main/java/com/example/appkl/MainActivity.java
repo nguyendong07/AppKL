@@ -45,6 +45,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+ 	File myObj = new File("filename1.txt");
+        try {
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         xValue = (TextView) findViewById(R.id.xValue);
@@ -69,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     System.out.println(y);
                     System.out.println(z);
                     String data = "abc";
-                    writeToFile(data, context);
+                    
             }
         });
         Log.d(TAG, "OnCreate : Register accelerometer Listener");
@@ -97,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         x = sensorEvent.values[0];
         y = sensorEvent.values[1];
         z = sensorEvent.values[2];
-//
+
     }
 
     @Override
